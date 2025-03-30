@@ -1,0 +1,119 @@
+# Rust Coding Guidelines
+
+## Core Principles
+
+- **Embrace Rust Idioms**  
+  Follow Rust's idiomatic patterns like `Option`, `Result`, and the ownership system. Don't fight against the borrow checker.
+
+- **Performance-Conscious Design**  
+  Write code that is both safe and performant. Consider allocation patterns, zero-copy when possible, and appropriate use of references.
+
+## Coding Pattern Preferences
+
+- **Always prefer simple solutions**  
+  Choose straightforward approaches over complex ones. If generic implementations become too complex, consider simpler concrete types.
+
+- **Leverage the Type System**  
+  Use Rust's strong type system to prevent bugs at compile time. Prefer newtype patterns over primitive types for domain-specific values.
+
+- **Error Handling**  
+  - Use `Result<T, E>` for recoverable errors
+  - Use custom error types with `thiserror` for library code
+  - Use `anyhow` for application code where error details are less critical
+  - Panic only in truly unrecoverable situations
+
+- **Async Code**  
+  - Clearly document runtime requirements (tokio, async-std, etc.)
+  - Use appropriate executor patterns
+  - Consider backpressure in async streams
+  - Properly handle cancellation
+
+- **Memory Management**  
+  - Minimize cloning - use references where appropriate
+  - Document lifetime relationships clearly
+  - Use Arc/Mutex only when necessary
+  - Consider custom allocators for performance-critical sections
+
+- **Testing**  
+  - Write unit tests using `#[test]`
+  - Use `#[cfg(test)]` for test modules
+  - Implement property-based tests for complex logic
+  - Mock external services in integration tests
+
+## Code Organization
+
+- **Module Structure**  
+  - One module per file
+  - Keep files under 500 lines
+  - Use clear module hierarchies
+  - Public APIs should be in `lib.rs` or `mod.rs`
+
+- **Naming Conventions**  
+  - Types: `PascalCase`
+  - Traits: `PascalCase`
+  - Functions/Methods: `snake_case`
+  - Constants: `SCREAMING_SNAKE_CASE`
+  - Modules: `snake_case`
+
+## Documentation
+
+- **Required Documentation**  
+  - All public items must have doc comments
+  - Include examples in doc tests
+  - Document panics and safety requirements
+  - Explain complex lifetime bounds
+
+## Performance Considerations
+
+- **Avoid Unnecessary Allocations**  
+  - Use `&str` instead of `String` when possible
+  - Consider using `Cow<str>` for optional ownership
+  - Use stack allocation for small, fixed-size arrays
+  - Profile allocation patterns in hot paths
+
+- **Concurrency**  
+  - Prefer message passing over shared state
+  - Use appropriate synchronization primitives
+  - Consider lock-free algorithms where applicable
+  - Document thread safety guarantees
+
+## Dependency Management
+
+- **Crate Selection**  
+  - Audit dependencies for security and maintenance
+  - Pin versions appropriately
+  - Consider MSRV (Minimum Supported Rust Version)
+  - Minimize dependency tree size
+
+## Tooling
+
+- **Required Tools**  
+  - `rustfmt` for consistent formatting
+  - `clippy` for linting
+  - `cargo audit` for security
+  - `cargo bench` for performance testing
+
+## Code Review Checklist
+
+Before submitting code for review, ensure:
+
+1. Code compiles without warnings (`cargo fmt`)
+3. Documentation is complete and accurate
+4. No unsafe code without thorough safety documentation
+5. Performance critical sections are benchmarked
+6. Error handling is comprehensive
+7. Code follows idiomatic Rust patterns
+
+## Safety and Security
+
+- **Unsafe Code**  
+  - Minimize unsafe blocks
+  - Document all safety invariants
+  - Encapsulate unsafe code in safe abstractions
+  - Provide thorough testing for unsafe sections
+
+- **Security Considerations**  
+  - Validate all external input
+  - Use constant-time comparisons for sensitive data
+  - Handle integer overflow correctly
+  - Consider DoS vectors in public APIs 

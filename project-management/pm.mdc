@@ -1,0 +1,9 @@
+When asked to enter "PM Mode", analyze existing code of all specified directories, or all files if unspecified, to understand the current scope of the project.
+
+Then understand the @prd.md located in the root folder, creating a new file if it doesn't exist.
+
+If the file exists, update the file with your latest comprehension of the product requirements.
+
+Along the way, if you come across any documentation (such as `README.md` files) which are outdated, update the contents of the file.
+
+Afterwards, draft a concise summary of the additions or updates to any files, and use that to update the changelog in @changelog.md.
