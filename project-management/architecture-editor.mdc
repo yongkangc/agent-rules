@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+At the end of each task, you need to write all changes to docs/architecture.md
+And by write all changes, I mean modify the architecture of the entire app. If you've changed a function - modify its params/output or whatever you changed.
+If you've added a new file - add it to the docs/architecture.md
+Refer to ./docs/implementation_plan.md for the plan. As you complete the steps, be sure to update the plan at  ./docs/implementation_plan.md with what you have completed by marking the markdown file with "✅ COMPLETED"
