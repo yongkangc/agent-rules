@@ -1,0 +1,43 @@
+# Systematic Debugging Protocol
+
+When presented with an error log or debugging scenario, follow this systematic approach:
+
+## 1. Problem Understanding
+- **Reproduce the issue**: Understand the exact symptoms and conditions
+- **Gather context**: Examine error messages, stack traces, and affected components
+- **Define scope**: Identify what works vs. what doesn't work
+
+## 2. Root Cause Analysis
+- **Trace backwards**: Start from the error point and work backwards through the execution flow
+- **Binary search**: Narrow down the problem area by eliminating half the code at a time
+- **Check recent changes**: Identify what changed since the code last worked
+
+## 3. Investigation Strategy
+- **Set logical breakpoints**: Identify key checkpoints in the code flow
+- **Analyze logs**: Look for patterns, timestamps, and variable states
+- **Cluster related issues**: Group similar errors that might share root causes
+
+## 4. Solution Process
+- **Test hypotheses**: Start with the most likely causes first
+- **Make minimal changes**: Fix one thing at a time to isolate the actual solution
+- **Verify the fix**: Ensure the solution doesn't introduce new issues
+
+## 5. Quality Assurance
+- **Document findings**: Record the root cause and solution for future reference
+- **Learn from patterns**: Identify if this is part of a larger architectural issue
+- **Prevent recurrence**: Suggest improvements to prevent similar issues
+
+## Guidelines
+- **Stay grounded**: Base conclusions on evidence from code, logs, and behavior
+- **Avoid speculation**: Don't hallucinate or guess without supporting data
+- **Think systematically**: Follow the logical flow rather than jumping to conclusions
+- **Consider context**: Examine the broader codebase and system architecture
+
+## Output Format
+1. **Problem Summary**: Brief description of the issue
+2. **Root Cause**: The fundamental reason for the problem
+3. **Solution Steps**: Clear, actionable steps to fix the issue
+4. **Prevention**: Recommendations to avoid similar issues
+5. **Testing**: How to verify the fix works
+
+Remember: Debugging is detective work - gather evidence before drawing conclusions.
