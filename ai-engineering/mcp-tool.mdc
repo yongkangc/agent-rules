@@ -1,0 +1,356 @@
+---
+description: modifying tools in mcp
+globs: 
+alwaysApply: false
+---
+# MCP Tool Description Excellence Framework
+
+Model Context Protocol tools must be **agent-friendly** and **immediately actionable**. Every tool description should enable AI agents to make confident decisions about when and how to use the tool.
+
+## Core Principles
+
+### 1. **Start with Purpose** (First Sentence Rule)
+Begin with a clear, action-oriented statement of what the tool does:
+- ✅ "Get current cryptocurrency prices with automatic source selection"
+- ✅ "Compare historical TVL data across multiple DeFi protocols"
+- ❌ "This tool allows you to retrieve information about..."
+- ❌ "A utility for accessing data from..."
+
+### 2. **Use Context-Driven Language**
+Write descriptions that help agents understand **when** to choose this tool over alternatives:
+- ✅ "Use this for **real-time price discovery** when you need the most current market data"
+- ✅ "Recommended over get_protocols to **avoid overwhelming responses** with manageable result sets"
+- ✅ "Essential for **validating liquidity incentive effectiveness** by analyzing retention patterns"
+
+### 3. **Include Smart Guidance**
+Provide decision-making hints that prevent common mistakes:
+- ✅ "Automatically finds the best data source across CoinGecko, CoinMarketCap, and DeFiLlama"
+- ✅ "Returns top 10 results by default. Use get_protocols_paginated for larger datasets"
+- ✅ "Supports symbols (BTC), names (Bitcoin), or contract addresses"
+
+### 4. **Add Practical Examples**
+Include concrete usage patterns in the description:
+- ✅ "Works with symbols (BTC, ETH), names (Bitcoin, Ethereum), or contract addresses"
+- ✅ "Filter by category ('Dexes', 'Lending', 'Yield') or blockchain ('Ethereum', 'Arbitrum')"
+
+### 5. **State Clear Limitations**
+Be upfront about constraints to prevent API errors:
+- ✅ "Maximum 20 assets can be compared at once"
+- ✅ "Historical data limited to 365 days for performance reasons"
+- ✅ "Requires CoinGecko integration for price comparison functionality"
+
+## Description Structure Template
+
+```
+[PRIMARY PURPOSE] [CONTEXT/WHEN TO USE] [KEY CAPABILITIES] [LIMITATIONS/CONSTRAINTS]
+```
+
+**Example Application:**
+```
+"Get current cryptocurrency prices with automatic source selection. Use for real-time price discovery when you need the most current market data. Supports symbols (BTC), names (Bitcoin), or contract addresses across CoinGecko, CoinMarketCap, and DeFiLlama. Maximum 50 requests per minute."
+```
+
+## Anti-Patterns to Avoid
+
+### ❌ Vague Descriptions
+- "Get DeFi data" → "Get top DeFi protocols ranked by TVL with filtering options"
+- "Retrieve information" → "Search for specific protocols by name, category, or blockchain"
+
+### ❌ Technical Jargon Without Context
+- "Returns JSON response from API endpoint" → "Returns structured protocol data including TVL, chains, and 24h changes"
+- "Uses RESTful interface" → "Fetches real-time data from CoinGecko API with automatic caching"
+
+### ❌ Missing Decision Context
+- "Get historical data" → "Get historical price data for trend analysis and volatility assessment"
+- "Search protocols" → "Find specific protocols when you know partial names or want to explore categories"
+
+### ❌ Unclear Alternatives
+- "Get protocols" → "Get top 10 protocols (recommended) or use get_protocols_paginated for full datasets"
+
+## Parameter Description Excellence
+
+### Enhance Parameter Descriptions with Context
+
+**❌ Basic Parameter Description:**
+```typescript
+limit: z.number().describe("Number of results")
+```
+
+**✅ Enhanced Parameter Description:**
+```typescript
+limit: z.number().min(1).max(100).default(10).describe("Number of top protocols to return (1-100, default: 10). Use smaller values for quick insights, larger for comprehensive analysis")
+```
+
+### Parameter Description Pattern
+```
+[PARAMETER PURPOSE] ([CONSTRAINTS]) [USAGE GUIDANCE]
+```
+
+**Examples:**
+- `"Start date in YYYY-MM-DD format (default: 30 days ago). Use recent dates for trend analysis, longer periods for volatility assessment"`
+- `"Target currency (usd, eur, btc, etc.). USD recommended for cross-protocol comparisons"`
+- `"Filter by blockchain (e.g., 'Ethereum', 'Arbitrum'). Use exact chain names from defillama_get_chains for accuracy"`
+
+## Integration-Specific Guidelines
+
+### DeFiLlama Tools
+- Emphasize **TVL analysis**, **protocol comparison**, and **mercenary capital detection**
+- Include guidance on data freshness and reliability
+- Distinguish between real-time and historical data tools
+
+### Price Tools  
+- Clarify **data source selection** and **aggregation strategies**
+- Specify **update frequencies** and **market coverage**
+- Include guidance on **currency conversions** and **market data accuracy**
+
+### Search & Discovery Tools
+- Emphasize **smart matching** capabilities and **fuzzy search**
+- Provide **category examples** and **search tips**
+- Include **result ranking** and **relevance guidance**
+
+## Quality Checklist
+
+Before finalizing any tool description, verify:
+
+- [ ] **Purpose Clear**: Can an agent immediately understand what this tool does?
+- [ ] **Context Provided**: Does the agent know when to use this vs alternatives?
+- [ ] **Examples Included**: Are there concrete usage patterns shown?
+- [ ] **Constraints Stated**: Are limitations and requirements clear?
+- [ ] **Parameters Enhanced**: Do parameter descriptions provide usage guidance?
+- [ ] **Action-Oriented**: Does the description start with a strong action verb?
+- [ ] **Length Appropriate**: 1-3 sentences covering all essential information?
+
+## Example Transformations
+
+### Before (Generic)
+```
+"Get protocols from DeFiLlama API"
+```
+
+### After (Excellence)
+```
+"Get top DeFi protocols ranked by TVL with filtering by category and blockchain. Recommended over get_protocols to avoid overwhelming responses. Returns manageable result sets (10-100 protocols) with formatted TVL values and 24h change data."
+```
+
+### Before (Technical)
+```
+"Retrieve historical market chart data for cryptocurrency analysis"
+```
+
+### After (Agent-Friendly)
+```
+"Get historical price, volume, and market cap data for cryptocurrency trend analysis. Use for volatility assessment, support/resistance identification, and performance comparisons. Supports 1 day to 1 year timeframes with hourly or daily granularity."
+```
+
+## Real-World Examples from Codebase
+
+### CoinGecko Integration Improvements
+
+**Before:**
+```typescript
+"get_coin_price",
+"Get current prices for specific cryptocurrencies using CoinGecko API with multiple currencies and optional market data"
+```
+
+**After:**
+```typescript
+"get_coin_price", 
+"Get real-time cryptocurrency prices with customizable market data from CoinGecko. Use for current price discovery and market analysis. Supports multiple currencies and optional market metrics like volume and price changes."
+```
+
+**Why This Works:**
+- Starts with clear action: "Get real-time cryptocurrency prices"
+- Adds context: "Use for current price discovery and market analysis"
+- Mentions key capabilities: "customizable market data", "multiple currencies"
+
+### CoinMarketCap Integration Improvements
+
+**Before:**
+```typescript
+"get_current_crypto_prices",
+"Get current prices and detailed market data for specific cryptocurrencies using CoinMarketCap API"
+```
+
+**After:**
+```typescript
+"get_current_crypto_prices",
+"Get comprehensive cryptocurrency market data from CoinMarketCap including prices, market caps, volume, and price changes across multiple timeframes. Use for detailed market analysis with institutional-grade data accuracy and extensive historical performance metrics."
+```
+
+**Why This Works:**
+- Specifies exactly what data is included
+- Positions the tool for "detailed market analysis"
+- Adds value proposition: "institutional-grade data accuracy"
+
+### Unified Price Tools Improvements
+
+**Before:**
+```typescript
+"get_current_price",
+"Get current price for any cryptocurrency. Works with symbols (BTC, ETH), names (Bitcoin, Ethereum), or contract addresses. Automatically finds the best data source."
+```
+
+**After:**
+```typescript
+"get_current_price",
+"Get current cryptocurrency prices with automatic source selection and intelligent fallbacks. Use for price discovery when you don't know which data source to use. Supports symbols (BTC, ETH), names (Bitcoin, Ethereum), or contract addresses across CoinGecko, CoinMarketCap, and DeFiLlama."
+```
+
+**Why This Works:**
+- Emphasizes the key differentiator: "automatic source selection and intelligent fallbacks"
+- Clear use case: "when you don't know which data source to use"
+- Lists all supported data sources explicitly
+
+## Advanced Parameter Enhancement Patterns
+
+### 1. Constraint + Guidance Pattern
+```typescript
+// Instead of:
+days: z.number().describe("Number of days")
+
+// Use:
+days: z.union([z.number(), z.string()]).default(1).describe("Number of days of data (1, 7, 14, 30, 90, 180, 365, max). Use shorter periods for intraday analysis, longer for trend assessment")
+```
+
+### 2. Examples + Context Pattern
+```typescript
+// Instead of:
+coin_id: z.string().describe("CoinGecko coin ID")
+
+// Use:
+coin_id: z.string().describe("CoinGecko coin ID ('bitcoin', 'ethereum', 'cardano'). Use search_coins to find exact IDs for any cryptocurrency")
+```
+
+### 3. Multiple Options + Recommendation Pattern
+```typescript
+// Instead of:
+vs_currency: z.string().default("usd").describe("Target currency")
+
+// Use:
+vs_currency: z.string().default("usd").describe("Target currency for price data (usd, eur, btc, eth). USD recommended for cross-asset comparisons")
+```
+
+### 4. Feature Flags + Requirements Pattern
+```typescript
+// Instead of:
+include_technical_indicators: z.boolean().default(false).describe("Include technical indicators")
+
+// Use:
+include_technical_indicators: z.boolean().default(false).describe("Include technical indicators (SMA, RSI, Bollinger Bands). Requires sufficient data points")
+```
+
+## Tool Naming Conventions
+
+### Good Tool Names
+- `get_current_price` - Clear action + object
+- `compare_prices` - Clear action + comparison
+- `search_assets` - Clear action + searchable entity
+- `get_historical_price` - Clear action + time dimension
+
+### Avoid These Patterns
+- `price_tool` - Too generic
+- `crypto_data_getter` - Verbose and unclear
+- `api_call_handler` - Implementation detail
+- `utility_function` - Not descriptive
+
+## Deprecated Tool Handling
+
+When deprecating tools, follow this pattern:
+
+```typescript
+factory.registerTool(
+  "legacy_tool_name",
+  "⚠️ DEPRECATED: Use new_tool_name for better performance and features. Legacy tool with limited functionality for backward compatibility.",
+  {
+    // Minimal parameters with warnings
+    include_warning: z.boolean().default(true).describe("Include deprecation warning in response")
+  },
+  // Implementation with deprecation notices
+)
+```
+
+## Multi-Tool Coordination
+
+### Tool Relationship Guidance
+
+When tools work together, mention complementary tools:
+
+```typescript
+"Get top DeFi protocols ranked by TVL. Use defillama_search_protocols to find specific protocols or defillama_get_protocols_paginated for larger datasets."
+```
+
+### Cross-Reference Pattern
+```typescript
+"Use search_coins to find exact IDs for any cryptocurrency"
+"Use exact chain names from defillama_get_chains for accuracy"
+"Combine with get_historical_price for comprehensive analysis"
+```
+
+## Error Prevention Through Descriptions
+
+### Common API Limitations
+```typescript
+// Prevent rate limiting issues
+"Maximum 20 assets can be compared at once for optimal performance"
+
+// Prevent invalid requests  
+"Requires CoinGecko integration for price comparison functionality"
+
+// Prevent overwhelming responses
+"Returns top 10 results by default. Use paginated version for larger datasets"
+```
+
+### Input Validation Guidance
+```typescript
+// Date format clarity
+"Start date in YYYY-MM-DD format. Invalid formats will return an error"
+
+// Symbol case sensitivity
+"Cryptocurrency symbols are case-insensitive ('BTC' or 'btc' both work)"
+
+// Required vs optional context
+"Optional parameter. If not provided, returns data for all supported chains"
+```
+
+## Performance Optimization Hints
+
+### Caching Guidance
+```typescript
+"Data cached for 5 minutes. Subsequent requests return cached results for better performance"
+```
+
+### Batch Processing
+```typescript
+"Supports batch requests for up to 100 symbols. Single requests recommended for real-time trading use cases"
+```
+
+### Rate Limiting
+```typescript
+"Rate limited to 100 requests per minute. Use batch endpoints for high-volume requests"
+```
+
+## Agent Decision-Making Enhancements
+
+### When to Use This Tool
+```typescript
+"Use for real-time price discovery when you need the most current market data"
+"Essential for validating liquidity incentive effectiveness by analyzing retention patterns"
+"Recommended for portfolio analysis when you need comprehensive market metrics"
+```
+
+### When NOT to Use This Tool
+```typescript
+"Not suitable for high-frequency trading data (use WebSocket endpoints instead)"
+"Historical data limited to 1 year (use dedicated historical APIs for longer periods)"
+"Does not include order book data (use exchange-specific APIs for depth analysis)"
+```
+
+### Alternative Tool Suggestions
+```typescript
+"For larger datasets, use get_protocols_paginated instead"
+"For historical analysis, combine with get_historical_price tool"
+"For specific protocol deep-dives, use get_protocol_details after finding the protocol"
+```
+
+Remember: **Every tool description is a conversation with an AI agent.** Make it count.
+
