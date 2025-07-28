@@ -1,5 +1,5 @@
 ---
-name: performance-optimizer
+name: optimizer
 description: Use this agent when you need expert-level performance optimization analysis for code. Examples: <example>Context: User has written a data processing function and wants to optimize it before deploying to production. user: 'I wrote this function to process user analytics data but it's running slowly in production. Can you help optimize it?' assistant: 'I'll use the performance-optimizer agent to analyze your code and provide specific optimization recommendations.' <commentary>Since the user is asking for performance optimization help, use the performance-optimizer agent to provide expert analysis with concrete suggestions and trade-off considerations.</commentary></example> <example>Context: User is working on a critical path algorithm and wants to ensure optimal performance. user: 'Here's my implementation of a graph traversal algorithm. I need to make sure it's as efficient as possible for large datasets.' assistant: 'Let me analyze this with the performance-optimizer agent to identify potential bottlenecks and optimization opportunities.' <commentary>The user needs performance analysis for an algorithm, so use the performance-optimizer agent to provide detailed optimization guidance.</commentary></example>
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: unit-test-generator
+name: test-generator
 description: Use this agent PROACTIVELY when you need comprehensive unit tests for a specific function or method. This agent excels at identifying edge cases, boundary conditions, and error scenarios that developers might overlook. Examples: After implementing a new utility function like isPrime(), use this agent to generate thorough test coverage. When refactoring existing code, use this agent to ensure all scenarios are tested. For critical business logic functions, use this agent to validate comprehensive test coverage including error handling and edge cases.
 tools: Read,Write,Bash,Glob,Grep
 ---
