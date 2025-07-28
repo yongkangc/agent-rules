@@ -14,9 +14,14 @@ Custom agent definitions for specialized tasks:
 - **test-engineer.md**: Agent for generating, running, and fixing tests with comprehensive coverage
 - **performance-optimizer.md**: Agent for expert-level code performance optimization analysis  
 - **code-reviewer.md**: Agent for comprehensive code review covering quality, security, and best practices
-- **unit-test-generator.md**: Agent specialized in generating thorough unit tests with edge case coverage
+- **unit-test-generator.md**: Agent specialized in generating thorough unit tests with edge case coverage (includes tools specification)
 
 These agents provide specialized expertise for different aspects of software development and can be invoked when needed for focused assistance.
+
+### commands/
+Custom slash commands for structured workflows:
+
+- **explore-plan**: Implements "Explore, Plan, Code, Test" workflow for thorough development tasks
 
 ## Usage
 
@@ -24,6 +29,7 @@ These configurations demonstrate how to customize Claude Code with:
 - Specialized agent personas for different development tasks
 - Custom settings for workflow preferences
 - Modular agent definitions for reusable expertise
+- Structured workflow commands for consistent development processes
 
 ## Note
 

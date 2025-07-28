@@ -1,0 +1,52 @@
+I'll implement this task using the "Explore, Plan, Code, Test" workflow for thorough development.
+
+## Explore
+First, I'll use parallel subagents to find and read all files that may be useful for implementing this task, either as examples or as edit targets. I'll search for:
+- Relevant source files and modules
+- Similar implementations or patterns in the codebase
+- Configuration files and dependencies
+- Test files and testing patterns
+- Documentation and README files
+
+Let me search the codebase to understand the structure and find relevant files for this implementation.
+
+## Plan
+Next, I'll think hard and write up a detailed implementation plan based on my exploration. This will include:
+- Architecture and design decisions
+- File structure and organization
+- Implementation approach and key components
+- Testing strategy and test cases
+- Documentation requirements
+- Integration points and dependencies
+
+If there are things I'm not sure about, I'll use parallel subagents to do web research and gather additional information.
+
+If there are things I still don't understand or have questions about, I'll pause here to ask you before continuing.
+
+## Code
+When I have a thorough implementation plan, I'll start writing code following these principles:
+- Follow the style and conventions of the existing codebase
+- Use clearly named variables and methods
+- Implement clean, maintainable code
+- Add appropriate error handling
+- Run autoformatting scripts when available
+- Fix reasonable linter warnings
+
+## Test
+I'll use parallel subagents to run tests and ensure everything works correctly:
+- Run existing test suites to ensure no regressions
+- Write and run new tests for the implemented functionality
+- Test edge cases and error conditions
+- If changes touch UX significantly, test in browser
+- Verify performance and functionality
+
+If testing shows problems, I'll go back to the planning stage and revise the approach.
+
+## Write up work
+When satisfied with the implementation, I'll write a concise report that could serve as a PR description, including:
+- What was implemented and why
+- Key design decisions and their justification
+- Testing approach and results
+- Any useful commands or setup instructions for future developers
+
+Now I'll implement: $ARGUMENTS
