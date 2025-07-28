@@ -13,8 +13,9 @@ Custom agent definitions for specialized tasks:
 
 - **test-engineer.md**: Agent for generating, running, and fixing tests with comprehensive coverage
 - **performance-optimizer.md**: Agent for expert-level code performance optimization analysis  
-- **code-reviewer.md**: Agent for comprehensive code review covering quality, security, and best practices
+- **code-reviewer.md**: Proactive code review specialist with enhanced security focus and immediate actionable feedback
 - **unit-test-generator.md**: Agent specialized in generating thorough unit tests with edge case coverage (includes tools specification)
+- **technical-documentation-writer.md**: Agent for creating clear, maintainable technical documentation following Divio's documentation framework
 
 These agents provide specialized expertise for different aspects of software development and can be invoked when needed for focused assistance.
 
