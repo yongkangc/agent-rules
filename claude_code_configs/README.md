@@ -4,6 +4,12 @@ This directory contains non-sensitive configuration files from my Claude Code se
 
 ## Contents
 
+### CODING_GUIDELINES.md
+Core coding principles and best practices:
+- Simplicity over abstraction
+- Using inline expressions for simple operations
+- Guidelines for when to create functions
+
 ### settings.json
 Main settings file with configuration options:
 - `includeCoAuthoredBy`: Controls whether to include co-authored-by information
