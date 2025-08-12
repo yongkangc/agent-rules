@@ -18,6 +18,7 @@ Custom agent definitions for specialized tasks:
 - **writer.md**: Agent for creating clear, maintainable technical documentation following Divio's documentation framework
 - **refactorer.md**: Agent for improving code structure, readability, and maintainability without changing functionality
 - **debugger.md**: Agent for systematic debugging and technical issue resolution
+- **memory.md**: User memory specialist for storing and recalling preferences, context, and project-specific information across sessions
 
 These agents provide specialized expertise for different aspects of software development and can be invoked when needed for focused assistance.
 
@@ -25,6 +26,7 @@ These agents provide specialized expertise for different aspects of software dev
 Custom slash commands for structured workflows:
 
 - **explore-plan**: Implements "Explore, Plan, Code, Test" workflow for thorough development tasks
+- **memory**: Memory management system for storing/recalling user preferences, project context, and solution patterns
 
 ## Usage
 
